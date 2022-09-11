@@ -20,11 +20,12 @@ let answerNumber  = Math.floor((minValue + maxValue) / 2);
 let orderNumber = 1;
 let gameRun = true;
 
+
 const orderNumberField = document.querySelector('#orderNumberField');
 const answerField = document.querySelector('#answerField');
 
 orderNumberField.innerText = orderNumber;
-answerField.innerText = `Вы загадали число ${answerNumber }?`;
+answerField.innerText = `Вы загадали число ${convert(answerNumber)}?`;
 
 document.querySelector('#btnRetry').addEventListener('click', function () {
     minValue = parseInt;
@@ -59,6 +60,7 @@ document.querySelector('#btnOver').addEventListener('click', function () {
     if (gameRun){
         if (minValue === maxValue) {
             const phraseRandom = Math.round( Math.random() * 3);
+            
            if  (phraseRandom == 1) 
            {
             answerPhrase = `Что-то тут не так!\n\u{1F914}`;}
@@ -73,25 +75,26 @@ document.querySelector('#btnOver').addEventListener('click', function () {
 
 
          else {
-            minValue = answerNumber  + 1;
+            minValue = answerNumber + 1;
             answerNumber  = Math.floor((minValue + maxValue) / 2);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
-
+            let abc = convert(answerNumber);
+        
             const phraseRandom = Math.round( Math.random() * 3);
                if  (phraseRandom == 1) 
                {
-            answerPhrase = `Может это ${answerNumber }?`;}
+            answerPhrase = `Может это ${abc}?`;}
 
             else if (phraseRandom == 2) {
-                answerPhrase = `Как насчет ${answerNumber }?`;
+                answerPhrase = `Как насчет ${abc}?`;
             }
             else {
-                answerPhrase = `Вероятно, ${answerNumber } подходит?`;
+                answerPhrase = `Вероятно, ${abc} подходит?`;
             }
         
         answerField.innerText = answerPhrase;
-        
+            
                }
     }
 }
@@ -102,6 +105,7 @@ document.querySelector('#btnLess').addEventListener('click', function () {
     if (gameRun){
         if (minValue === maxValue){
             const phraseRandom = Math.round( Math.random() * 3);
+            
             if  (phraseRandom == 1) 
             {
              answerPhrase = `Что-то тут не так!\n\u{1F914}`;}
@@ -114,20 +118,21 @@ document.querySelector('#btnLess').addEventListener('click', function () {
                  gameRun = false;
         }
         else {
-            maxValue = answerNumber ;
-            answerNumber  = Math.floor((minValue + maxValue) / 2);
+            maxValue = answerNumber -1;
+            answerNumber  = Math.ceil((minValue + maxValue) / 2);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
+            let abc = convert(answerNumber);
             const phraseRandom = Math.round( Math.random() * 3);
                if  (phraseRandom == 1) 
                {
-            answerPhrase = `Может это ${answerNumber }?`;}
+            answerPhrase = `Может это ${abc}?`;}
 
             else if (phraseRandom == 2) {
-                answerPhrase = `Как насчет ${answerNumber }?`;
+                answerPhrase = `Как насчет ${abc}?`;
             }
             else {
-                answerPhrase = `Вероятно, ${answerNumber } подходит?`;
+                answerPhrase = `Вероятно, ${abc} подходит?`;
             }
         
         answerField.innerText = answerPhrase;
@@ -155,3 +160,50 @@ document.querySelector('#btnEqual').addEventListener('click', function () {
 
 
 
+function convert() {
+
+    const ones = ["один","два","три", "четыре", "пять", "шесть",
+     "семь", "восемь", "девять", "десять"];
+    
+    const teens = ["одиннадцать","двенадцать", "тринадцать", "четырнадцать", 
+    "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"];
+
+    let tens = ["двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", 
+    "семьдесят", "восемьдесят", "девяносто"];
+
+    let hundreds = ["сто","двести","триста", "четыреста", "пятьсот", "шестьсот",
+     "семьсот", "восемьсот", "девятьсот"];
+
+    let toLetters;
+
+    let firstRank;
+    let secondRank;
+    let thirdRank;
+    let sign= (answerNumber < 0) ? 'минус':'';
+    let below = Math.abs(answerNumber);
+
+    if(below > 9 && below <20) {
+        toLetters = sign + " " + teens[below%10-1];
+         }
+    else {
+        if(below === 0) {toLetters = 0}
+        thirdRank = hundreds[(below-below%100)/100-1];
+        secondRank = tens [(below%100-below%10)/10-2];
+        firstRank = ones [below%10-1];
+        
+        toLetters = sign + " " +`${thirdRank === undefined ? '' : thirdRank} ${secondRank === undefined ? '' : secondRank} ${firstRank === undefined ? '' : firstRank}`;
+    }
+    
+    if (below < 0) {
+        toLetters = toLetters + "минус" + " ";
+    }
+    
+    if(below === 0) {
+        return 0;
+     }
+
+  else {
+        return toLetters.length < 20 ? toLetters : below;
+    }
+
+}
