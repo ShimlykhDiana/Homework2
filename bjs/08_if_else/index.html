@@ -13,32 +13,58 @@
 <div class="container">
     <div class="row game-card align-items-center">
         <div class="col col-md-4 offset-md-4">
-            <div class="card text-center">
+            <div class="card text-center" id="theCard">
                 <div class="card-header">
-                    <p class="m-0">Вопрос №<span id="orderNumberField">5</span></p>
+                    <p class="m-0">Вопрос №<span id="orderNumberField">0</span></p>
                 </div>
                 <div class="card-body">
                     <div class="row no-gutters">
                         <div class="col">
-                            <h3 class="card-title m-0"><span id="answerField">Вы загадали число 5?</span></h3>
+                            <h3 class="card-title m-0"><span id="answerField">Хотите поиграть?</span></h3>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="btn-group">
-                        <button class="btn btn-info" id="btnLess">&#129047;<br>меньше</button>
-                        <button class="btn btn-success btn-lg" id="btnEqual">Верно!</button>
-                        <button class="btn btn-info" id="btnOver">больше<br>&#129045;</button>
+                        <button class="btn btn-info" id="btnLess"><img src="./images/clipart1042844.png" alt="less"></button>
+                        <button class="btn btn-success btn-lg" id="btnEqual"><img src="./images/Lovepik_com-610754701-Cartoon hand-drawn cat OK expression.png" alt="equal" id="bingo"></button>
+                        <button class="btn btn-info" id="btnOver"><img src="./images/clipart397557.png" alt="more"></button>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-link" id="btnRetry">Заново</button>
+                    <div class="btn-group">
+                        <button class="btn btn-link" data-bs-toggle = "collapse" data-bs-target = "#collapseC" aria-expanded = "false"  aria-controls= "collapseC" id="btnGame">
+                            Играть
+                        </button>
+                        <button class="btn btn-link" id="btnRetry">Заново</button>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseC">
+                    <div class="card card-body text-center">
+                        <form>
+                            <div class="form-group">
+                                <label for="minValue">Введите минимальное значение</label><br>
+                                <input type="number" class="form-contorol" id = "minValue" aria-describedby="minHelp">
+                                <small id="minHelp" class="form-text text-muted">Минимальное значение для ввода: -999!</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="maxValue">Введите максимальное значение</label><br>
+                                <input type="number" class="form-contorol" id = "maxValue" aria-describedby="maxHelp">
+                                <small id="maxHelp" class="form-text text-muted">Максимальное значение для ввода: 999!</small>
+                            </div>
+                        </form>
+                            <button type="submit" class="btn btn-primary" data-bs-toggle = "collapse" data-bs-target = "#collapseC" aria-expanded = "false"  aria-controls= "collapseC" id="btnStart" >
+                                Старт
+                            </button>
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script src="script.js"></script>
+<script src="js/bootstrap.js"></script>
 </body>
 </html>
 

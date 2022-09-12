@@ -2,3 +2,100 @@
     height: 100vh;
     font-family: 'Open Sans', monospace;
 }
+
+body {
+    background-image: url(./images/watermark.jpg);
+    background-color: rgb(232, 178, 160);
+    background-position:center;
+    /* display: flex; */
+    background-size:cover;
+}
+#theCard {
+    border-radius: 50px 50px;
+    border-width: 20px;
+   
+   
+}
+.card-header {
+    color:rgb(137, 84, 130);
+    font-family: Bradley Hand, cursive;
+    text-shadow:rgb(52, 14, 46);
+    font-size: larger;
+    background-color: rgba(188, 159, 221, 0.187);
+    border-radius:0 50px;
+    
+}
+.card-body {
+    color: rgb(194, 185, 203);
+    background-color: rgba(62, 11, 61, 0.892);
+    font-family: Bradley Hand, cursive;
+    text-shadow:rgb(59, 23, 54);
+}
+
+#btnLess {
+    background-color: rgb(144, 117, 144);
+    font-size: larger;
+    color: rgb(114, 48, 105);
+    border-radius: 50px 0 0 50px;
+    border-color: blueviolet;
+}
+#btnOver {
+    background-color: rgb(47, 7, 47);
+    font-size: larger;
+    color: rgb(134, 93, 129);
+    border-radius: 0 50px 50px 0;
+    border-color: blueviolet;
+    
+}
+
+#btnEqual {
+    background-color: rgb(89, 40, 89);
+    font-size: larger;
+    color: rgb(127, 68, 120);
+    font-size: 10px;
+    text-align: center;
+    border-color: blueviolet;
+    
+}
+
+img {
+    height: 20px;
+    width: 20px;
+    object-fit: contain; 
+    float: center;
+}
+
+#bingo {
+    height: 70px;
+    width: 70px;
+    
+}
+
+#btnRetry {
+    color:rgb(137, 84, 130);
+    font-family: Bradley Hand, cursive;
+    text-shadow:rgb(52, 14, 46);
+    font-size: larger;
+}
+
+#btn-group {
+    border-color: blueviolet;
+}
+
+.btn.btn-link {
+    color:rgb(137, 84, 130);
+    font-family: Bradley Hand, cursive;
+    text-shadow:rgb(52, 14, 46);
+    font-size: larger;
+}
+
+#btnStart {
+    background-color: rgb(88, 57, 117);
+    border-radius: 50px 50px;
+    border-color: rgb(35, 15, 53);
+}
+
+input {
+    border-radius: 50px 50px;
+    width: 100px;
+}

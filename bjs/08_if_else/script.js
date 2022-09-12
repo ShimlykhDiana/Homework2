@@ -1,4 +1,66 @@
-let minValue = parseInt(prompt('Минимальное значение числа для игры','0'));
+let answerNumber;
+let orderNumber;
+let gameRun = true;
+let minValue;
+let maxValue;
+
+const orderNumberField = document.querySelector('#orderNumberField');
+const answerField = document.querySelector('#answerField');
+
+function convert() {
+
+    const ones = ["один","два","три", "четыре", "пять", "шесть",
+     "семь", "восемь", "девять", "десять"];
+    
+    const teens = ["одиннадцать","двенадцать", "тринадцать", "четырнадцать", 
+    "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"];
+
+    let tens = ["двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", 
+    "семьдесят", "восемьдесят", "девяносто"];
+
+    let hundreds = ["сто","двести","триста", "четыреста", "пятьсот", "шестьсот",
+     "семьсот", "восемьсот", "девятьсот"];
+
+    let toLetters;
+
+    let firstRank;
+    let secondRank;
+    let thirdRank;
+    let sign= (answerNumber < 0) ? 'минус':'';
+    let below = Math.abs(answerNumber);
+
+    if(below > 9 && below <20) {
+        toLetters = sign + " " + teens[below%10-1];
+         }
+    else {
+        if(below === 0) {toLetters = 0}
+        thirdRank = hundreds[(below-below%100)/100-1];
+        secondRank = tens [(below%100-below%10)/10-2];
+        firstRank = ones [below%10-1];
+        
+        toLetters = sign + " " +`${thirdRank === undefined ? '' : thirdRank} ${secondRank === undefined ? '' : secondRank} ${firstRank === undefined ? '' : firstRank}`;
+    }
+    
+  
+    if(below === 0) {
+        return 0;
+     }
+// По заданию ограничение в 20 символов, мне больше нравится, когда все числа прописью
+  else {
+        return toLetters.length < 20 ? toLetters : answerNumber;
+    }
+
+}
+
+
+
+// alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
+
+document.querySelector('#btnStart').addEventListener('click', function () {
+
+minValue = Number(document.querySelector('#minValue').value);
+maxValue = Number(document.querySelector('#maxValue').value);
+
 switch (isNaN(minValue) || minValue) {
     case true:
       minValue = -999;
@@ -7,7 +69,6 @@ switch (isNaN(minValue) || minValue) {
         minValue = minValue < -999 ? -999 : minValue;
 }
 
-let maxValue = parseInt(prompt('Максимальное значение числа для игры','100'));
 switch (isNaN(maxValue) || maxValue) {
     case true:
       maxValue = 999;      
@@ -15,20 +76,18 @@ switch (isNaN(maxValue) || maxValue) {
     default:
         maxValue = maxValue > 999 ? 999 : maxValue;  
 }
-alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
-let answerNumber  = Math.floor((minValue + maxValue) / 2);
-let orderNumber = 1;
-let gameRun = true;
 
-
-const orderNumberField = document.querySelector('#orderNumberField');
-const answerField = document.querySelector('#answerField');
-
+answerNumber  = Math.floor((minValue + maxValue) / 2);
+orderNumber = 1;
+gameRun = true;
 orderNumberField.innerText = orderNumber;
 answerField.innerText = `Вы загадали число ${convert(answerNumber)}?`;
 
+})
+
+
 document.querySelector('#btnRetry').addEventListener('click', function () {
-    minValue = parseInt;
+  
     switch (isNaN(minValue) || minValue) {
         case true:
           minValue = -999;
@@ -37,7 +96,7 @@ document.querySelector('#btnRetry').addEventListener('click', function () {
             minValue = minValue < -999 ? -999 : minValue;
     }
 
-    maxValue = parseInt;
+  
     switch (isNaN(maxValue) || maxValue) {
         case true:
           maxValue = 999;      
@@ -50,7 +109,7 @@ document.querySelector('#btnRetry').addEventListener('click', function () {
     gameRun = true;
     location.reload();
 
-    alert(`Сыграем еще раз? Загадайте любое другое целое число в диапазоне, и я снова его угадаю`);
+    // alert(`Сыграем еще раз? Загадайте любое другое целое число в диапазоне, и я снова его угадаю`);
 
 
 })
@@ -160,50 +219,3 @@ document.querySelector('#btnEqual').addEventListener('click', function () {
 
 
 
-function convert() {
-
-    const ones = ["один","два","три", "четыре", "пять", "шесть",
-     "семь", "восемь", "девять", "десять"];
-    
-    const teens = ["одиннадцать","двенадцать", "тринадцать", "четырнадцать", 
-    "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"];
-
-    let tens = ["двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", 
-    "семьдесят", "восемьдесят", "девяносто"];
-
-    let hundreds = ["сто","двести","триста", "четыреста", "пятьсот", "шестьсот",
-     "семьсот", "восемьсот", "девятьсот"];
-
-    let toLetters;
-
-    let firstRank;
-    let secondRank;
-    let thirdRank;
-    let sign= (answerNumber < 0) ? 'минус':'';
-    let below = Math.abs(answerNumber);
-
-    if(below > 9 && below <20) {
-        toLetters = sign + " " + teens[below%10-1];
-         }
-    else {
-        if(below === 0) {toLetters = 0}
-        thirdRank = hundreds[(below-below%100)/100-1];
-        secondRank = tens [(below%100-below%10)/10-2];
-        firstRank = ones [below%10-1];
-        
-        toLetters = sign + " " +`${thirdRank === undefined ? '' : thirdRank} ${secondRank === undefined ? '' : secondRank} ${firstRank === undefined ? '' : firstRank}`;
-    }
-    
-    if (below < 0) {
-        toLetters = toLetters + "минус" + " ";
-    }
-    
-    if(below === 0) {
-        return 0;
-     }
-
-  else {
-        return toLetters.length < 20 ? toLetters : below;
-    }
-
-}
